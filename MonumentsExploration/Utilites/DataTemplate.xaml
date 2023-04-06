@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:MonumentsExploration.ViewModels"
+                    xmlns:v="clr-namespace:MonumentsExploration.Views">
+
+    <DataTemplate DataType="{x:Type vm:MapVM}">
+        <v:Map/>
+    </DataTemplate>
+</ResourceDictionary>
