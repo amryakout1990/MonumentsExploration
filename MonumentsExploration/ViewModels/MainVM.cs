@@ -1,5 +1,4 @@
-﻿using MonumentsExploration.Stores;
-using MonumentsExploration.Utilites;
+﻿using MonumentsExploration.Utilites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +11,6 @@ namespace MonumentsExploration.ViewModels
 {
     class MainVM:Utilites.ViewModelBase
     {
-        private readonly NavigationStore _navigationStore;
-
-        public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
-
         private bool _showGrid;
         public bool ShowGrid
         {
@@ -49,11 +44,9 @@ namespace MonumentsExploration.ViewModels
         public ICommand ShowLocationsCommand { get; private set; }
         public ICommand HideLocationsCommand { get; private set; }
 
-        public MainVM(NavigationStore navigationStore)
+        public MainVM( )
         {
-            _navigationStore = navigationStore;
             ShowGrid = false;
-            _navigationStore.CurrentViewModelChanged += _navigationStore_CurrentViewModelChanged;
 
             TextIdsCommand = new ParametrizedActionCommand(TextIds);
             GetPointsCommand = new ParametrizedActionCommand(GetPoints);
@@ -86,11 +79,6 @@ namespace MonumentsExploration.ViewModels
         private void ShowLocations()
         {
             ShowLocationsBool = true;
-        }
-
-        private void _navigationStore_CurrentViewModelChanged()
-        {
-            OnPropertyChanged(nameof(CurrentViewModel));
         }
 
         private void TextIds(object CurrentIDS)
