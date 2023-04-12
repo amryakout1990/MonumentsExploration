@@ -1,5 +1,4 @@
-﻿using MonumentsExploration.Stores;
-using MonumentsExploration.ViewModels;
+﻿using MonumentsExploration.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,13 +18,9 @@ namespace MonumentsExploration
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            NavigationStore _navigationStore = new NavigationStore();
-
-            _navigationStore.CurrentViewModel = new MapVM(_navigationStore);
-
             MainWindow = new MainWindow()
             {
-                DataContext = new MainVM(_navigationStore)
+                DataContext = new MainVM()
             };
             MainWindow.Show();
         }
