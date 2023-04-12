@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:MonumentsExploration"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen"
-        Background="Transparent" WindowStyle="None">
+        Background="Transparent" AllowsTransparency="True" WindowStyle="None">
     <Border CornerRadius="10" Background="#2fda2b" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -445,6 +445,14 @@
                                     <Ellipse Grid.Row="5" Grid.Column="0" Width="20" Height="20" Fill="Orange"/>
                                     <Ellipse Grid.Row="6" Grid.Column="0" Width="20" Height="20" Fill="Brown"/>
                                     <Ellipse Grid.Row="7" Grid.Column="0" Width="20" Height="20" Fill="Pink"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="100%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="88%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Text="75%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="1" Text="63%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="5" Grid.Column="1" Text="50%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="6" Grid.Column="1" Text="37%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="7" Grid.Column="1" Text="25%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+
                                 </Grid>
                             </Grid>
                         </Border>
