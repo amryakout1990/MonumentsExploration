@@ -11,11 +11,11 @@ namespace MonumentsExploration.ViewModels
 {
     class MainVM:Utilites.ViewModelBase
     {
-        private bool _showGrid;
-        public bool ShowGrid
+        private bool _showGridBool;
+        public bool ShowGridBool
         {
-            get { return _showGrid; }
-            set { _showGrid = value;OnPropertyChanged(); }
+            get { return _showGridBool; }
+            set { _showGridBool = value;OnPropertyChanged(); }
         }
 
         private bool _showIDSBool;
@@ -26,7 +26,6 @@ namespace MonumentsExploration.ViewModels
         }
 
         private bool _showLocationsBool;
-
         public bool ShowLocationsBool
         {
             get { return _showLocationsBool; }
@@ -46,8 +45,6 @@ namespace MonumentsExploration.ViewModels
 
         public MainVM( )
         {
-            ShowGrid = false;
-
             TextIdsCommand = new ParametrizedActionCommand(TextIds);
             GetPointsCommand = new ParametrizedActionCommand(GetPoints);
             GetImageCommand = new ParametrizedActionCommand(GetPoints);
@@ -103,12 +100,12 @@ namespace MonumentsExploration.ViewModels
 
         private void Hide()
         {
-            ShowGrid = false;
+            ShowGridBool = false;
         }
 
         private void Show()
         {
-            ShowGrid = true;
+            ShowGridBool = true;
         }
     }
 }

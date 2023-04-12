@@ -12,7 +12,7 @@
     <Border CornerRadius="10" Background="#2fda2b" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2.5*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
@@ -70,15 +70,15 @@
                     </GroupBox>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Image Grid.Column="0" Source="/Images/72.gif" Stretch="Fill" Margin="5"/>
+                    <Image Grid.Column="0" Source="/Images/100.png" Stretch="Fill" Margin="5"/>
 
-                    <!--ShowGridLinesGrid-->
+                    <!--ShowGridLines Grid-->
                     <Grid Grid.Column="0" Margin="5" >
                         <Grid.Style>
                             <Style TargetType="Grid">
                                 <Setter Property="ShowGridLines" Value="False"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ShowGrid}" Value="True">
+                                    <DataTrigger Binding="{Binding ShowGridBool}" Value="True">
                                         <Setter Property="ShowGridLines" Value="True"/>
                                         <Setter Property="Panel.ZIndex" Value="1"/>
                                     </DataTrigger>
@@ -131,10 +131,10 @@
                         </Grid.RowDefinitions>
                     </Grid>
 
-                    <!--ShowIDSGrid-->
-                    <Grid Grid.Column="0" Margin="5" >
-                        <Grid.Style>
-                            <Style TargetType="Grid">
+                    <!--ShowIDS Grid-->
+                    <ItemsControl Grid.Column="0" Margin="5" ItemsSource="{Binding }">
+                        <ItemsControl.Style>
+                            <Style TargetType="ItemsControl">
                                 <Setter Property="Visibility"  Value="Collapsed"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ShowIDSBool}" Value="True">
@@ -143,79 +143,13 @@
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </Grid.Style>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <RadioButton x:Name="t6_6" Grid.Row="5" Grid.Column="5" Content="6.6" Style="{StaticResource RadioButtonIDS}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Checked">
-                                    <i:InvokeCommandAction 
-                                    Command="{Binding TextIdsCommand}"
-                                    CommandParameter="{Binding ElementName=t6_6, Path=Content}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </RadioButton>
-                        <RadioButton x:Name="t10_12" Grid.Row="9" Grid.Column="11" Content="10.12" Style="{StaticResource RadioButtonIDS}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Checked">
-                                    <i:InvokeCommandAction 
-                                    Command="{Binding TextIdsCommand}"
-                                    CommandParameter="{Binding ElementName=t10_12, Path=Content}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </RadioButton>
-                        <RadioButton x:Name="t12_15" Grid.Row="11" Grid.Column="14" Content="12.15" Style="{StaticResource RadioButtonIDS}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Checked">
-                                    <i:InvokeCommandAction 
-                                    Command="{Binding TextIdsCommand}"
-                                    CommandParameter="{Binding ElementName=t12_15, Path=Content}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </RadioButton>
-                    </Grid>
+                        </ItemsControl.Style>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="20" Rows="20"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
 
                     <!--ShowLocations Grid-->
                     <Grid Grid.Column="0" Margin="5" >
@@ -303,84 +237,6 @@
                         </Ellipse>
 
                     </Grid>
-
-                    <!--ShowMonuments Grid-->
-                    <Grid Grid.Column="0" Margin="5" >
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Image x:Name="P9_10" Tag="musem" Grid.Row="8" Grid.Column="9" Source="/Images/11.jpeg" >
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction 
-                                    Command="{Binding GetImageCommand}"
-                                    CommandParameter="{Binding ElementName=P9_10, Path=Tag}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Image>
-                        <Image x:Name="P3_11" Tag="Pyramids" Grid.Row="2" Grid.Column="10" Source="/Images/13.png" >
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction 
-                                    Command="{Binding GetImageCommand}"
-                                    CommandParameter="{Binding ElementName=P3_11, Path=Tag}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Image>
-                        <Image x:Name="P11_13" Tag="sonpol" Grid.Row="11" Grid.Column="13" Source="/Images/12.jpg" >
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction 
-                                    Command="{Binding GetImageCommand}"
-                                    CommandParameter="{Binding ElementName=P11_13, Path=Tag}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Image>
-
-                    </Grid>
-
                 </Grid>
 
             </Grid>
@@ -408,11 +264,11 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <RadioButton Grid.Row="0" GroupName="r" Content="Hoopoe Algorithm" IsChecked="True" Foreground="White"/>
-                            <RadioButton Grid.Row="1" GroupName="r" Content="Cuckoo Search" IsChecked="True" Foreground="White"/>
+                            <RadioButton Grid.Row="1" GroupName="r" Content="Cuckoo Search" Foreground="White"/>
                         </Grid>
                         <Button Grid.Row="2" Content="Start Analysis Sequence" Style="{StaticResource ButtonStyle}"/>
                         <Button Grid.Row="3" Content="New Analysis" Style="{StaticResource ButtonStyleNew}"/>
-                        <Border Grid.Row="4" Background="DarkBlue" Margin="20" CornerRadius="10">
+                        <Border Grid.Row="4" Background="DarkBlue" Margin="10" CornerRadius="10">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"/>
