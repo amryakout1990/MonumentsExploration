@@ -161,8 +161,8 @@
 
         <Style x:Key="EllipseStyle" TargetType="Ellipse">
             <Setter Property="Fill" Value="Black"/>
-            <Setter Property="Width" Value="10"/>
-            <Setter Property="Height" Value="10"/>
+            <Setter Property="Width" Value="8"/>
+            <Setter Property="Height" Value="8"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Fill" Value="DarkViolet"/>

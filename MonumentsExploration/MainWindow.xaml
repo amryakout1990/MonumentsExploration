@@ -185,6 +185,26 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -207,34 +227,67 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Ellipse x:Name="e2_11" Tag="e2_11" Grid.Row="1" Grid.Column="10" Style="{StaticResource EllipseStyle}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction 
-                                    Command="{Binding GetPointsCommand}"
-                                    CommandParameter="{Binding ElementName=e2_11, Path=Tag}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Ellipse>
-                        <Ellipse x:Name="e6_113" Tag="e6_113" Grid.Row="5" Grid.Column="10" Style="{StaticResource EllipseStyle}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction 
-                                    Command="{Binding GetPointsCommand}"
-                                    CommandParameter="{Binding ElementName=e6_113, Path=Tag}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Ellipse>
-                        <Ellipse x:Name="e11_12" Tag="e11_12" Grid.Row="10" Grid.Column="11" Style="{StaticResource EllipseStyle}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction 
-                                    Command="{Binding GetPointsCommand}"
-                                    CommandParameter="{Binding ElementName=e11_12, Path=Tag}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Ellipse>
+                        <Ellipse Grid.Row="1" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="2" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="5" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="5" Grid.Column="19" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="4" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="20" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="21" Grid.Column="22" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="22" Grid.Column="23" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="22" Grid.Column="24" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="23" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="24" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="25" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="24" Grid.Column="24" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="26" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="27" Grid.Column="23" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="28" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="28" Grid.Column="26" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="28" Grid.Column="24" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="29" Grid.Column="28" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="30" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="30" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="2" Grid.Column="18" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="5" Grid.Column="29" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="5" Grid.Column="10" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="4" Grid.Column="28" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="15" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="2" Grid.Column="22" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="4" Grid.Column="22" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="7" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="3" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="2" Grid.Column="30" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="4" Grid.Column="19" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="5" Grid.Column="18" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="9" Grid.Column="22" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="6" Grid.Column="19" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="6" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="5" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="6" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="22" Grid.Column="10" Style="{StaticResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="3" Grid.Column="5" Style="{StaticResource EllipseStyle}"/>
 
                     </Grid>
                 </Grid>
