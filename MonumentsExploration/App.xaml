@@ -38,7 +38,6 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -192,7 +191,10 @@
             <Setter Property="FontWeight" Value="Medium"/>
         </Style>
 
-
+        <Style x:Key="BordersMap" TargetType="Border">
+            <!--<Setter Property="Opacity" Value="0.5"/>-->
+            <Setter Property="Margin" Value="1"/>
+        </Style>
 
     </Application.Resources>
     

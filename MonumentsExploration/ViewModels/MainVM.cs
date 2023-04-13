@@ -36,6 +36,14 @@ namespace MonumentsExploration.ViewModels
             set { _showLocationsBool = value; OnPropertyChanged();}
         }
 
+        private bool _showColorsBool;
+
+        public bool ShowColorsBool
+        {
+            get { return _showColorsBool; }
+            set { _showColorsBool = value; OnPropertyChanged(); }
+        }
+
         private ObservableCollection<Button> IdsButtons;
         private CollectionViewSource IdsButtonsCollection;
         public ICollectionView SourceCollection => IdsButtonsCollection.View;
@@ -48,6 +56,8 @@ namespace MonumentsExploration.ViewModels
         public ICommand HideIDSCommand { get; private set; }
         public ICommand ShowLocationsCommand { get; private set; }
         public ICommand HideLocationsCommand { get; private set; }
+        public ICommand StartAnaylsissCommand { get; private set; }
+        public ICommand NewAnaylsissCommand { get; private set; }
 
         public MainVM( )
         {
@@ -59,6 +69,28 @@ namespace MonumentsExploration.ViewModels
             HideIDSCommand = new ActionCommand(HideIDS);
             ShowLocationsCommand = new ActionCommand(ShowLocations);
             HideLocationsCommand = new ActionCommand(HideLocations);
+            StartAnaylsissCommand = new ActionCommand(StartAnaylsiss);
+            NewAnaylsissCommand = new ActionCommand(NewAnaylsiss);
+        }
+
+        private void NewAnaylsiss()
+        {
+            ShowColorsBool = false;
+            ShowGridBool = false;
+            ShowIDSBool = false;
+            ShowLocationsBool = false;
+        }
+
+        private void StartAnaylsiss()
+        {
+            if (ShowLocationsBool==true)
+            {
+                ShowColorsBool = true;
+            }
+            else
+            {
+                MessageBox.Show("Please Show Locations First");
+            }
         }
 
         private void LoadIds()
@@ -80,6 +112,7 @@ namespace MonumentsExploration.ViewModels
         private void HideLocations()
         {
             ShowLocationsBool = false;
+            ShowColorsBool = false;
         }
 
         private void ShowLocations()

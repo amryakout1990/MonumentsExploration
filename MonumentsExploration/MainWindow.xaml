@@ -290,6 +290,162 @@
                         <Ellipse Grid.Row="3" Grid.Column="5" Style="{StaticResource EllipseStyle}"/>
 
                     </Grid>
+
+                    <!--ShowColos Grid-->
+                    <Grid Grid.Column="0" Margin="5" >
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShowColorsBool}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Panel.ZIndex" Value="1"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="2" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="2" Grid.Column="19" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="3" Grid.Column="20" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="3" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="4" Grid.Column="19" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="4" Grid.Column="20" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="5" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="6" Grid.Column="19" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="7" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="7" Grid.Column="20" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="21" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="2" Grid.Column="29" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="3" Grid.Column="28" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="3" Grid.Column="27" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="28" Grid.Column="19" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="24" Grid.Column="25" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="25" Grid.Column="25" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="26" Grid.Column="24" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="27" Grid.Column="24" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="28" Grid.Column="26" Background="Red" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="3" Grid.Column="26" Background="Blue" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="8" Grid.Column="20" Background="Blue" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="3" Grid.Column="19" Background="Blue" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="4" Grid.Column="21" Background="Blue" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="5" Grid.Column="20" Background="Blue" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="27" Grid.Column="26" Background="Blue" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="28" Grid.Column="24" Background="Blue" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="22" Grid.Column="23" Background="Blue" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="8" Grid.Column="19" Background="Blue" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="25" Grid.Column="26" Background="Blue" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="23" Grid.Column="26" Background="Green" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="29" Grid.Column="26" Background="Green" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="5" Grid.Column="22" Background="Green" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="2" Grid.Column="23" Background="Green" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="8" Grid.Column="21" Background="Green" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="5" Grid.Column="18" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="25" Grid.Column="23" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="6" Grid.Column="18" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="3" Grid.Column="25" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="3" Grid.Column="5" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="21" Grid.Column="23" Background="Orange" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="3" Grid.Column="23" Background="Orange" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="28" Grid.Column="28" Background="Orange" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="5" Grid.Column="10" Background="Orange" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="9" Grid.Column="22" Background="Orange" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="7" Grid.Column="22" Background="Brown" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="4" Grid.Column="30" Background="Brown" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="24" Grid.Column="23" Background="Brown" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="2" Grid.Column="17" Background="Brown" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="6" Grid.Column="22" Background="Brown" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="4" Grid.Column="28" Background="Pink" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="22" Grid.Column="10" Background="Pink" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="30" Grid.Column="28" Background="Pink" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="2" Grid.Column="30" Background="Pink" Style="{StaticResource BordersMap}"/>
+                        <Border Grid.Row="15" Grid.Column="21" Background="Pink" Style="{StaticResource BordersMap}"/>
+
+
+                    </Grid>
                 </Grid>
 
             </Grid>
@@ -319,8 +475,8 @@
                             <RadioButton Grid.Row="0" GroupName="r" Content="Hoopoe Algorithm" IsChecked="True" Foreground="White"/>
                             <RadioButton Grid.Row="1" GroupName="r" Content="Cuckoo Search" Foreground="White"/>
                         </Grid>
-                        <Button Grid.Row="2" Content="Start Analysis Sequence" Style="{StaticResource ButtonStyle}"/>
-                        <Button Grid.Row="3" Content="New Analysis" Style="{StaticResource ButtonStyleNew}"/>
+                        <Button Grid.Row="2" Content="Start Analysis Sequence" Command="{Binding StartAnaylsissCommand}" Style="{StaticResource ButtonStyle}"/>
+                        <Button Grid.Row="3" Content="New Analysis" Command="{Binding NewAnaylsissCommand}" Style="{StaticResource ButtonStyleNew}"/>
                         <Border Grid.Row="4" Background="DarkBlue" Margin="10" CornerRadius="10">
                             <Grid>
                                 <Grid.RowDefinitions>
