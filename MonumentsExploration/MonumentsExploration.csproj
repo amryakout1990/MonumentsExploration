@@ -98,7 +98,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Utilites\ActionCommand.cs" />
-    <Compile Include="Utilites\ParametrizedActionCommand.cs" />
     <Compile Include="Utilites\ViewModelBase.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Page Include="MainWindow.xaml">

@@ -132,7 +132,7 @@
                     </Grid>
 
                     <!--ShowIDS Grid-->
-                    <ItemsControl Grid.Column="0" Margin="5" ItemsSource="{Binding }">
+                    <ItemsControl Grid.Column="0" Margin="5" ItemsSource="{Binding SourceCollection}">
                         <ItemsControl.Style>
                             <Style TargetType="ItemsControl">
                                 <Setter Property="Visibility"  Value="Collapsed"/>

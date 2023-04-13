@@ -1,10 +1,14 @@
 ﻿using MonumentsExploration.Utilites;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace MonumentsExploration.ViewModels
@@ -32,9 +36,11 @@ namespace MonumentsExploration.ViewModels
             set { _showLocationsBool = value; OnPropertyChanged();}
         }
 
-        public ICommand TextIdsCommand { get; private set; }
-        public ICommand GetPointsCommand { get; private set; }
-        public ICommand GetImageCommand { get; private set; }
+        private ObservableCollection<Button> IdsButtons;
+        private CollectionViewSource IdsButtonsCollection;
+        public ICollectionView SourceCollection => IdsButtonsCollection.View;
+        private Button IdsButton;
+
         public ICommand ShowGridCommand { get; private set; }
         public ICommand HideGridCommand { get; private set; }
         public ICommand FaCloseCommand { get; private set; }
@@ -45,9 +51,7 @@ namespace MonumentsExploration.ViewModels
 
         public MainVM( )
         {
-            TextIdsCommand = new ParametrizedActionCommand(TextIds);
-            GetPointsCommand = new ParametrizedActionCommand(GetPoints);
-            GetImageCommand = new ParametrizedActionCommand(GetPoints);
+            LoadIds();
             ShowGridCommand = new ActionCommand(Show);
             HideGridCommand = new ActionCommand(Hide);
             FaCloseCommand = new ActionCommand(FaClose);
@@ -57,17 +61,22 @@ namespace MonumentsExploration.ViewModels
             HideLocationsCommand = new ActionCommand(HideLocations);
         }
 
-        private void GetImage(object CurrentImage)
+        private void LoadIds()
         {
-            MessageBox.Show(CurrentImage.ToString());
+            IdsButtons = new ObservableCollection<Button>();
+            IdsButtons.Clear();
+            for (int i = 1; i <=20; i++)
+            {
+                for (int i2 = 1; i2 <=20; i2++)
+                {
+                    IdsButton = new Button();
+                    IdsButton.Content =i.ToString() + "," + i2.ToString();
+                    IdsButton.Style=(Style)IdsButton.FindResource("ButtonIDS");
+                    IdsButtons.Add(IdsButton);
+                }
+            }
+            IdsButtonsCollection = new CollectionViewSource { Source = IdsButtons };
         }
-
-        private void GetPoints(object CurrentPoint)
-        {
-            MessageBox.Show(CurrentPoint.ToString());
-
-        }
-
         private void HideLocations()
         {
             ShowLocationsBool = false;
@@ -76,11 +85,6 @@ namespace MonumentsExploration.ViewModels
         private void ShowLocations()
         {
             ShowLocationsBool = true;
-        }
-
-        private void TextIds(object CurrentIDS)
-        {
-            MessageBox.Show(CurrentIDS.ToString());
         }
 
         private void HideIDS()

@@ -32,7 +32,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="RadioButtonIDS" TargetType="RadioButton">
+        <Style x:Key="ButtonIDS" TargetType="Button">
             <Setter Property="Padding" Value="5"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -41,7 +41,7 @@
             <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="RadioButton">
+                    <ControlTemplate TargetType="Button">
                         <TextBlock Background="{TemplateBinding Background}" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </TextBlock>
@@ -52,7 +52,7 @@
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Foreground" Value="Red"/>
                 </Trigger>
-                <Trigger Property="IsChecked" Value="True">
+                <Trigger Property="IsMouseCaptured" Value="True">
                     <Setter Property="Foreground" Value="DodgerBlue"/>
                 </Trigger>
 
