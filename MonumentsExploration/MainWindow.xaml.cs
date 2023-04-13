@@ -38,5 +38,52 @@ namespace MonumentsExploration
                 }
             }
         }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount==2)
+            {
+                if (mw.WindowState == WindowState.Normal)
+                {
+                    mw.WindowState = WindowState.Maximized;
+                }
+                else if (mw.WindowState == WindowState.Maximized)
+                {
+                    mw.WindowState = WindowState.Normal;
+                }
+
+            }
+        }
+
+        private void FaClose_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void FaMini_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (mw.WindowState == WindowState.Normal)
+            {
+                mw.WindowState = WindowState.Minimized;
+            }
+            else if (mw.WindowState == WindowState.Maximized)
+            {
+                mw.WindowState = WindowState.Minimized;
+            }
+
+        }
+
+        private void FaMax_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (mw.WindowState == WindowState.Normal)
+            {
+                mw.WindowState = WindowState.Maximized;
+            }
+            else if (mw.WindowState == WindowState.Maximized)
+            {
+                mw.WindowState = WindowState.Normal;
+            }
+
+        }
     }
 }

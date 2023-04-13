@@ -7,9 +7,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MonumentsExploration"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Name="mw" Height="450" Width="800" WindowStartupLocation="CenterScreen"
         Background="Transparent" AllowsTransparency="True" WindowStyle="None">
-    <Border CornerRadius="10" Background="#2fda2b" MouseDown="Border_MouseDown">
+    <Border CornerRadius="10" Background="#2fda2b" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2.5*"/>
@@ -459,14 +459,10 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <fa:ImageAwesome Grid.Column="3" Icon="Close" Style="{StaticResource FaCloseStyle}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction Command="{Binding FaCloseCommand}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </fa:ImageAwesome>
-                        <TextBlock Grid.Row="0" Text="Algorithm Analysis" FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="15"/>
+                        <fa:ImageAwesome Grid.Column="3" Icon="Close" Style="{StaticResource FaCloseStyle}" Name="FaClose" MouseDown="FaClose_MouseDown"/>
+                        <fa:ImageAwesome Grid.Column="3" Icon="WindowMinimize" Style="{StaticResource FaMiniStyle}" Name="FaMini" MouseDown="FaMini_MouseDown"/>
+                        <fa:ImageAwesome Grid.Column="3" Icon="WindowMaximize" Style="{StaticResource FaMaxStyle}" Name="FaMax" MouseDown="FaMax_MouseDown"/>
+                        <TextBlock Grid.Row="0" Text="Algorithm Analysis" FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="15 25 15 15"/>
                         <Grid Grid.Row="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>

@@ -51,7 +51,6 @@ namespace MonumentsExploration.ViewModels
 
         public ICommand ShowGridCommand { get; private set; }
         public ICommand HideGridCommand { get; private set; }
-        public ICommand FaCloseCommand { get; private set; }
         public ICommand ShowIDSCommand { get; private set; }
         public ICommand HideIDSCommand { get; private set; }
         public ICommand ShowLocationsCommand { get; private set; }
@@ -64,7 +63,6 @@ namespace MonumentsExploration.ViewModels
             LoadIds();
             ShowGridCommand = new ActionCommand(Show);
             HideGridCommand = new ActionCommand(Hide);
-            FaCloseCommand = new ActionCommand(FaClose);
             ShowIDSCommand = new ActionCommand(ShowIDS);
             HideIDSCommand = new ActionCommand(HideIDS);
             ShowLocationsCommand = new ActionCommand(ShowLocations);
@@ -128,11 +126,6 @@ namespace MonumentsExploration.ViewModels
         private void ShowIDS()
         {
             ShowIDSBool = true;
-        }
-
-        private void FaClose()
-        {
-            Application.Current.Shutdown();
         }
 
         private void Hide()
