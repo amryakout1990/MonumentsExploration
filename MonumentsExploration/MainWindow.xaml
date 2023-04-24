@@ -7,519 +7,557 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MonumentsExploration"
         mc:Ignorable="d"
-        Title="MainWindow" Name="mw" Height="450" Width="800" WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Name="mw" Height="500" Width="800" WindowStartupLocation="CenterScreen"
         Background="Transparent" AllowsTransparency="True" WindowStyle="None">
+    <Window.Resources>
+        <Storyboard x:Key="MainStoryboard">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-100"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="-200"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="150"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="Start">
+            <BeginStoryboard Storyboard="{StaticResource MainStoryboard}"/>
+        </EventTrigger>
+    </Window.Triggers>
     <Border CornerRadius="10" Background="#2fda2b" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2.5*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <GroupBox Header="Map Grid View" Margin="5">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <RadioButton Content="Show Grid Lines" Grid.Row="0" Margin="5"
-                                     Style="{DynamicResource RadioButtonStyle}"
-                                     Command="{Binding ShowGridCommand}"/>
-                            <RadioButton Grid.Row="1" Content="Hide Grid Lines" Margin="5"
-                                     Style="{StaticResource RadioButtonStyle}"
-                                     Command="{Binding HideGridCommand}"/>
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox Header="Show IDS In Cells" Margin="5" Grid.Column="1">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <RadioButton Content="Show IDS" Grid.Row="0" Margin="5"
-                                     Style="{DynamicResource RadioButtonStyle}"
-                                     Command="{Binding ShowIDSCommand}"/>
-                            <RadioButton Grid.Row="1" Content="Hide IDS" Margin="5"
-                                     Style="{StaticResource RadioButtonStyle}"
-                                     Command="{Binding HideIDSCommand}"/>
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox Header="Monuments Locations" Margin="5" Grid.Column="2">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <RadioButton Content="Show Locations" Grid.Row="0" Margin="5"
-                                     Style="{DynamicResource RadioButtonStyle}"
-                                     Command="{Binding ShowLocationsCommand}"/>
-                            <RadioButton Grid.Row="1" Content="Hide Locations" Margin="5"
-                                     Style="{StaticResource RadioButtonStyle}"
-                                     Command="{Binding HideLocationsCommand}"/>
-                        </Grid>
-                    </GroupBox>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Image Grid.Column="0" Source="/Images/100.png" Stretch="Fill" Margin="5"/>
-
-                    <!--ShowGridLines Grid-->
-                    <Grid Grid.Column="0" Margin="5" >
-                        <Grid.Style>
-                            <Style TargetType="Grid">
-                                <Setter Property="ShowGridLines" Value="False"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ShowGridBool}" Value="True">
-                                        <Setter Property="ShowGridLines" Value="True"/>
-                                        <Setter Property="Panel.ZIndex" Value="1"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Grid.Style>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                    </Grid>
-
-                    <!--ShowIDS Grid-->
-                    <ItemsControl Grid.Column="0" Margin="5" ItemsSource="{Binding SourceCollection}">
-                        <ItemsControl.Style>
-                            <Style TargetType="ItemsControl">
-                                <Setter Property="Visibility"  Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ShowIDSBool}" Value="True">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                        <Setter Property="Panel.ZIndex" Value="1"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ItemsControl.Style>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Columns="20" Rows="20"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
-
-                    <!--ShowLocations Grid-->
-                    <Grid Grid.Column="0" Margin="5" >
-                        <Grid.Style>
-                            <Style TargetType="Grid">
-                                <Setter Property="Visibility"  Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ShowLocationsBool}" Value="True">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                        <Setter Property="Panel.ZIndex" Value="1"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Grid.Style>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Ellipse Grid.Row="1" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="2" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="5" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="5" Grid.Column="19" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="4" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="20" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="21" Grid.Column="22" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="22" Grid.Column="23" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="22" Grid.Column="24" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="23" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="24" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="25" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="24" Grid.Column="24" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="26" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="27" Grid.Column="23" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="28" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="28" Grid.Column="26" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="28" Grid.Column="24" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="29" Grid.Column="28" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="30" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="30" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="2" Grid.Column="18" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="5" Grid.Column="29" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="5" Grid.Column="10" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="4" Grid.Column="28" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="15" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="2" Grid.Column="22" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="4" Grid.Column="22" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="7" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="3" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="2" Grid.Column="30" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="4" Grid.Column="19" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="5" Grid.Column="18" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="9" Grid.Column="22" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="6" Grid.Column="19" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="6" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="5" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="6" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="22" Grid.Column="10" Style="{StaticResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="3" Grid.Column="5" Style="{StaticResource EllipseStyle}"/>
-
-                    </Grid>
-
-                    <!--ShowColos Grid-->
-                    <Grid Grid.Column="0" Margin="5" >
-                        <Grid.Style>
-                            <Style TargetType="Grid">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ShowColorsBool}" Value="True">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                        <Setter Property="Panel.ZIndex" Value="1"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Grid.Style>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Border Grid.Row="2" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="2" Grid.Column="19" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="3" Grid.Column="20" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="3" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="4" Grid.Column="19" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="4" Grid.Column="20" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="5" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="6" Grid.Column="19" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="7" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="7" Grid.Column="20" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="21" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="2" Grid.Column="29" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="3" Grid.Column="28" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="3" Grid.Column="27" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="28" Grid.Column="19" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="24" Grid.Column="25" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="25" Grid.Column="25" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="26" Grid.Column="24" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="27" Grid.Column="24" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="28" Grid.Column="26" Background="Red" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="3" Grid.Column="26" Background="Blue" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="8" Grid.Column="20" Background="Blue" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="3" Grid.Column="19" Background="Blue" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="4" Grid.Column="21" Background="Blue" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="5" Grid.Column="20" Background="Blue" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="27" Grid.Column="26" Background="Blue" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="28" Grid.Column="24" Background="Blue" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="22" Grid.Column="23" Background="Blue" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="8" Grid.Column="19" Background="Blue" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="25" Grid.Column="26" Background="Blue" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="23" Grid.Column="26" Background="Green" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="29" Grid.Column="26" Background="Green" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="5" Grid.Column="22" Background="Green" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="2" Grid.Column="23" Background="Green" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="8" Grid.Column="21" Background="Green" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="5" Grid.Column="18" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="25" Grid.Column="23" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="6" Grid.Column="18" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="3" Grid.Column="25" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="3" Grid.Column="5" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="21" Grid.Column="23" Background="Orange" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="3" Grid.Column="23" Background="Orange" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="28" Grid.Column="28" Background="Orange" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="5" Grid.Column="10" Background="Orange" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="9" Grid.Column="22" Background="Orange" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="7" Grid.Column="22" Background="Brown" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="4" Grid.Column="30" Background="Brown" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="24" Grid.Column="23" Background="Brown" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="2" Grid.Column="17" Background="Brown" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="6" Grid.Column="22" Background="Brown" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="4" Grid.Column="28" Background="Pink" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="22" Grid.Column="10" Background="Pink" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="30" Grid.Column="28" Background="Pink" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="2" Grid.Column="30" Background="Pink" Style="{StaticResource BordersMap}"/>
-                        <Border Grid.Row="15" Grid.Column="21" Background="Pink" Style="{StaticResource BordersMap}"/>
-
-
-                    </Grid>
-                </Grid>
-
+        <Grid x:Name="grid" Margin="200 -150 -200 150" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <!--Left Grid-->
+            <Grid x:Name="LeftGrid" Width="200" Margin="-200 0 0 0" HorizontalAlignment="Left">
+                <TextBlock Text="Islam" Margin="0 150 0 0" FontSize="50" Foreground="White" HorizontalAlignment="Center"/>
             </Grid>
-            <Grid Grid.Column="1">
-                <Border Background="DarkSlateBlue" CornerRadius="0 10 10 0">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <fa:ImageAwesome Grid.Column="3" Icon="Close" Style="{StaticResource FaCloseStyle}" Name="FaClose" MouseDown="FaClose_MouseDown"/>
-                        <fa:ImageAwesome Grid.Column="3" Icon="WindowMinimize" Style="{StaticResource FaMiniStyle}" Name="FaMini" MouseDown="FaMini_MouseDown"/>
-                        <fa:ImageAwesome Grid.Column="3" Icon="WindowMaximize" Style="{StaticResource FaMaxStyle}" Name="FaMax" MouseDown="FaMax_MouseDown"/>
-                        <TextBlock Grid.Row="0" Text="Algorithm Analysis" FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="15 25 15 15"/>
-                        <Grid Grid.Row="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <RadioButton Grid.Row="0" GroupName="r" Content="Hoopoe Algorithm" IsChecked="True" Foreground="White"/>
-                            <RadioButton Grid.Row="1" GroupName="r" Content="Cuckoo Search" Foreground="White"/>
-                        </Grid>
-                        <Button Grid.Row="2" Content="Start Analysis Sequence" Command="{Binding StartAnaylsissCommand}" Style="{StaticResource ButtonStyle}"/>
-                        <Button Grid.Row="3" Content="New Analysis" Command="{Binding NewAnaylsissCommand}" Style="{StaticResource ButtonStyleNew}"/>
-                        <Border Grid.Row="4" Background="DarkBlue" Margin="10" CornerRadius="10">
+            <!--Bottom Grid-->
+            <Grid x:Name="BottomGrid" Height="100" VerticalAlignment="Bottom" Margin="0 0 200 -150">
+                <Button x:Name="Start" Content="Start" Width="100" Height="50" Style="{StaticResource ButtonStyle}"/>
+            </Grid>
+            <!--Main Grid-->
+            <Grid x:Name="MainGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="600*"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="350*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Header="Map Grid View" Margin="5">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="Color Indicators" FontSize="15" Foreground="White" HorizontalAlignment="Center" Margin="15"/>
-                                <Separator Grid.Row="1" Margin="20 0 20 0" Background="White"/>
-                                <Grid Grid.Row="2">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Pin Color" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="% of Correctness" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
-                                    <Ellipse Grid.Row="1" Grid.Column="0" Width="20" Height="20" Fill="Red"/>
-                                    <Ellipse Grid.Row="2" Grid.Column="0" Width="20" Height="20" Fill="Blue"/>
-                                    <Ellipse Grid.Row="3" Grid.Column="0" Width="20" Height="20" Fill="Green"/>
-                                    <Ellipse Grid.Row="4" Grid.Column="0" Width="20" Height="20" Fill="LawnGreen"/>
-                                    <Ellipse Grid.Row="5" Grid.Column="0" Width="20" Height="20" Fill="Orange"/>
-                                    <Ellipse Grid.Row="6" Grid.Column="0" Width="20" Height="20" Fill="Brown"/>
-                                    <Ellipse Grid.Row="7" Grid.Column="0" Width="20" Height="20" Fill="Pink"/>
-                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="100%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="88%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Row="3" Grid.Column="1" Text="75%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Row="4" Grid.Column="1" Text="63%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Row="5" Grid.Column="1" Text="50%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Row="6" Grid.Column="1" Text="37%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Row="7" Grid.Column="1" Text="25%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
-
-                                </Grid>
+                                <RadioButton Content="Show Grid Lines" Grid.Row="0" Margin="5"
+                                     Style="{DynamicResource RadioButtonStyle}"
+                                     Command="{Binding ShowGridCommand}"
+                                             IsChecked="{Binding b1}"/>
+                                <RadioButton Grid.Row="1" Content="Hide Grid Lines" Margin="5"
+                                     Style="{StaticResource RadioButtonStyle}"
+                                     Command="{Binding HideGridCommand}"
+                                             IsChecked="{Binding b2}"/>
                             </Grid>
-                        </Border>
+                        </GroupBox>
+                        <GroupBox Header="Show IDS In Cells" Margin="5" Grid.Column="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <RadioButton Content="Show IDS" Grid.Row="0" Margin="5"
+                                     Style="{DynamicResource RadioButtonStyle}"
+                                     Command="{Binding ShowIDSCommand}"/>
+                                <RadioButton Grid.Row="1" Content="Hide IDS" Margin="5"
+                                     Style="{StaticResource RadioButtonStyle}"
+                                     Command="{Binding HideIDSCommand}"/>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="Monuments Locations" Margin="5" Grid.Column="2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <RadioButton Content="Show Locations" Grid.Row="0" Margin="5"
+                                     Style="{DynamicResource RadioButtonStyle}"
+                                     Command="{Binding ShowLocationsCommand}"/>
+                                <RadioButton Grid.Row="1" Content="Hide Locations" Margin="5"
+                                     Style="{StaticResource RadioButtonStyle}"
+                                     Command="{Binding HideLocationsCommand}"/>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Image Grid.Column="0" Source="/Images/100.png" Stretch="Fill" Margin="5"/>
+
+                        <!--ShowGridLines Grid-->
+                        <Grid Grid.Column="0" Margin="5" >
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Setter Property="ShowGridLines" Value="False"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ShowGridBool}" Value="True">
+                                            <Setter Property="ShowGridLines" Value="True"/>
+                                            <Setter Property="Panel.ZIndex" Value="1"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                        </Grid>
+
+                        <!--ShowIDS Grid-->
+                        <ItemsControl Grid.Column="0" Margin="5" ItemsSource="{Binding SourceCollection}">
+                            <ItemsControl.Style>
+                                <Style TargetType="ItemsControl">
+                                    <Setter Property="Visibility"  Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ShowIDSBool}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Setter Property="Panel.ZIndex" Value="1"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ItemsControl.Style>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="20" Rows="20"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+
+                        <!--ShowLocations Grid-->
+                        <Grid Grid.Column="0" Margin="5" >
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Setter Property="Visibility"  Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ShowLocationsBool}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Setter Property="Panel.ZIndex" Value="1"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Ellipse Grid.Row="1" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="2" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="5" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="5" Grid.Column="19" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="4" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="20" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="21" Grid.Column="22" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="22" Grid.Column="23" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="22" Grid.Column="24" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="23" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="24" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="25" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="24" Grid.Column="24" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="26" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="27" Grid.Column="23" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="28" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="28" Grid.Column="26" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="28" Grid.Column="24" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="29" Grid.Column="28" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="30" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="30" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="2" Grid.Column="18" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="5" Grid.Column="29" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="5" Grid.Column="10" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="4" Grid.Column="28" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="15" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="2" Grid.Column="22" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="4" Grid.Column="22" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="7" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="3" Grid.Column="25" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="2" Grid.Column="30" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="4" Grid.Column="19" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="5" Grid.Column="18" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="9" Grid.Column="22" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="6" Grid.Column="19" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="6" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="5" Grid.Column="21" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="6" Grid.Column="20" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="22" Grid.Column="10" Style="{StaticResource EllipseStyle}"/>
+                            <Ellipse Grid.Row="3" Grid.Column="5" Style="{StaticResource EllipseStyle}"/>
+
+                        </Grid>
+
+                        <!--ShowColos Grid-->
+                        <Grid Grid.Column="0" Margin="5" >
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ShowColorsBool}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Setter Property="Panel.ZIndex" Value="1"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="2" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="2" Grid.Column="19" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="3" Grid.Column="20" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="3" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="4" Grid.Column="19" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="4" Grid.Column="20" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="5" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="6" Grid.Column="19" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="7" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="7" Grid.Column="20" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="21" Grid.Column="21" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="2" Grid.Column="29" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="3" Grid.Column="28" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="3" Grid.Column="27" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="28" Grid.Column="19" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="24" Grid.Column="25" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="25" Grid.Column="25" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="26" Grid.Column="24" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="27" Grid.Column="24" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="28" Grid.Column="26" Background="Red" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="3" Grid.Column="26" Background="Blue" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="8" Grid.Column="20" Background="Blue" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="3" Grid.Column="19" Background="Blue" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="4" Grid.Column="21" Background="Blue" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="5" Grid.Column="20" Background="Blue" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="27" Grid.Column="26" Background="Blue" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="28" Grid.Column="24" Background="Blue" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="22" Grid.Column="23" Background="Blue" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="8" Grid.Column="19" Background="Blue" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="25" Grid.Column="26" Background="Blue" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="23" Grid.Column="26" Background="Green" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="29" Grid.Column="26" Background="Green" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="5" Grid.Column="22" Background="Green" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="2" Grid.Column="23" Background="Green" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="8" Grid.Column="21" Background="Green" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="5" Grid.Column="18" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="25" Grid.Column="23" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="6" Grid.Column="18" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="3" Grid.Column="25" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="3" Grid.Column="5" Background="LawnGreen" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="21" Grid.Column="23" Background="Orange" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="3" Grid.Column="23" Background="Orange" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="28" Grid.Column="28" Background="Orange" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="5" Grid.Column="10" Background="Orange" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="9" Grid.Column="22" Background="Orange" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="7" Grid.Column="22" Background="Brown" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="4" Grid.Column="30" Background="Brown" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="24" Grid.Column="23" Background="Brown" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="2" Grid.Column="17" Background="Brown" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="6" Grid.Column="22" Background="Brown" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="4" Grid.Column="28" Background="Pink" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="22" Grid.Column="10" Background="Pink" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="30" Grid.Column="28" Background="Pink" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="2" Grid.Column="30" Background="Pink" Style="{StaticResource BordersMap}"/>
+                            <Border Grid.Row="15" Grid.Column="21" Background="Pink" Style="{StaticResource BordersMap}"/>
+
+
+                        </Grid>
                     </Grid>
 
-                </Border>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Border Background="DarkSlateBlue" CornerRadius="0 10 10 0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <fa:ImageAwesome Grid.Column="3" Icon="Close" Style="{StaticResource FaCloseStyle}" Name="FaClose" MouseDown="FaClose_MouseDown"/>
+                            <fa:ImageAwesome Grid.Column="3" Icon="WindowMinimize" Style="{StaticResource FaMiniStyle}" Name="FaMini" MouseDown="FaMini_MouseDown"/>
+                            <fa:ImageAwesome Grid.Column="3" Icon="WindowMaximize" Style="{StaticResource FaMaxStyle}" Name="FaMax" MouseDown="FaMax_MouseDown"/>
+                            <TextBlock Grid.Row="0" Text="Algorithm Analysis" FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="15 25 15 15"/>
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <RadioButton Grid.Row="0" GroupName="r" Content="Hoopoe Algorithm" IsChecked="True" Foreground="White"/>
+                                <RadioButton Grid.Row="1" GroupName="r" Content="Cuckoo Search" Foreground="White"/>
+                            </Grid>
+                            <Button Grid.Row="2" Content="Start Analysis Sequence" Command="{Binding StartAnaylsissCommand}" Style="{StaticResource ButtonStyle}"/>
+                            <Button Grid.Row="3" Content="New Analysis" Command="{Binding NewAnaylsissCommand}" Style="{StaticResource ButtonStyleNew}"/>
+                            <Border Grid.Row="4" Background="DarkBlue" Margin="10" CornerRadius="10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="Color Indicators" FontSize="15" Foreground="White" HorizontalAlignment="Center" Margin="15"/>
+                                    <Separator Grid.Row="1" Margin="20 0 20 0" Background="White"/>
+                                    <Grid Grid.Row="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Pin Color" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="% of Correctness" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                        <Ellipse Grid.Row="1" Grid.Column="0" Width="20" Height="20" Fill="Red"/>
+                                        <Ellipse Grid.Row="2" Grid.Column="0" Width="20" Height="20" Fill="Blue"/>
+                                        <Ellipse Grid.Row="3" Grid.Column="0" Width="20" Height="20" Fill="Green"/>
+                                        <Ellipse Grid.Row="4" Grid.Column="0" Width="20" Height="20" Fill="LawnGreen"/>
+                                        <Ellipse Grid.Row="5" Grid.Column="0" Width="20" Height="20" Fill="Orange"/>
+                                        <Ellipse Grid.Row="6" Grid.Column="0" Width="20" Height="20" Fill="Brown"/>
+                                        <Ellipse Grid.Row="7" Grid.Column="0" Width="20" Height="20" Fill="Pink"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="1" Text="100%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="1" Text="88%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="1" Text="75%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="4" Grid.Column="1" Text="63%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="5" Grid.Column="1" Text="50%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="6" Grid.Column="1" Text="37%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="7" Grid.Column="1" Text="25%" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
+
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                    </Border>
+                </Grid>
             </Grid>
         </Grid>
     </Border>
