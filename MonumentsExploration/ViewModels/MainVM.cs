@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +16,54 @@ namespace MonumentsExploration.ViewModels
 {
     class MainVM:Utilites.ViewModelBase
     {
+        private bool _showArrow;
+        public bool ShowArrow
+        {
+            get { return _showArrow; }
+            set { _showArrow = value; OnPropertyChanged(); }
+        }
+
+        private bool _b1;
+        public bool b1
+        {
+            get { return _b1; }
+            set { _b1 = value; OnPropertyChanged(); }
+        }
+
+        private bool _b2;
+        public bool b2
+        {
+            get { return _b2; }
+            set { _b2 = value; OnPropertyChanged(); }
+        }
+
+        private bool _b3;
+        public bool b3
+        {
+            get { return _b3; }
+            set { _b3 = value; OnPropertyChanged(); }
+        }
+
+        private bool _b4;
+        public bool b4
+        {
+            get { return _b4; }
+            set { _b4 = value; OnPropertyChanged(); }
+        }
+
+        private bool _b5;
+        public bool b5
+        {
+            get { return _b5; }
+            set { _b5 = value; OnPropertyChanged(); }
+        }
+        private bool _b6;
+        public bool b6
+        {
+            get { return _b6; }
+            set { _b6 = value; OnPropertyChanged(); }
+        }
+
         private bool _showGridBool;
         public bool ShowGridBool
         {
@@ -77,13 +126,21 @@ namespace MonumentsExploration.ViewModels
             ShowGridBool = false;
             ShowIDSBool = false;
             ShowLocationsBool = false;
+            b1 = false;
+            b2 = false;
+            b3 = false;
+            b4 = false;
+            b5 = false;
+            b6 = false;
+
         }
 
-        private void StartAnaylsiss()
+        private async void StartAnaylsiss()
         {
             if (ShowLocationsBool==true)
             {
-                ShowColorsBool = true;
+                ShowArrow = true;
+                await Task.Run(()=> { Thread.Sleep(800); ShowColorsBool = true; ShowArrow = false;});
             }
             else
             {

@@ -20,10 +20,38 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="150"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="ArrowStoryboard">
+            <PointAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="path">
+                <EasingPointKeyFrame KeyTime="0:0:0.1" Value="0.5,1"/>
+                <EasingPointKeyFrame KeyTime="0:0:0.8" Value="0.5,1"/>
+            </PointAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="path">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="47.01"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="88.473"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="127.249"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="180.117"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="225.858"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="277.134"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="334.583"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="360"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="5.56726"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="-12.8008"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="Start">
             <BeginStoryboard Storyboard="{StaticResource MainStoryboard}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="Analysis">
+            <BeginStoryboard Storyboard="{StaticResource ArrowStoryboard}"/>
         </EventTrigger>
     </Window.Triggers>
     <Border CornerRadius="10" Background="#2fda2b" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
@@ -85,10 +113,12 @@
                                 </Grid.RowDefinitions>
                                 <RadioButton Content="Show IDS" Grid.Row="0" Margin="5"
                                      Style="{DynamicResource RadioButtonStyle}"
-                                     Command="{Binding ShowIDSCommand}"/>
+                                     Command="{Binding ShowIDSCommand}"
+                                     IsChecked="{Binding b3}"/>
                                 <RadioButton Grid.Row="1" Content="Hide IDS" Margin="5"
                                      Style="{StaticResource RadioButtonStyle}"
-                                     Command="{Binding HideIDSCommand}"/>
+                                     Command="{Binding HideIDSCommand}"
+                                     IsChecked="{Binding b4}"/>
                             </Grid>
                         </GroupBox>
                         <GroupBox Header="Monuments Locations" Margin="5" Grid.Column="2">
@@ -99,15 +129,53 @@
                                 </Grid.RowDefinitions>
                                 <RadioButton Content="Show Locations" Grid.Row="0" Margin="5"
                                      Style="{DynamicResource RadioButtonStyle}"
-                                     Command="{Binding ShowLocationsCommand}"/>
+                                     Command="{Binding ShowLocationsCommand}" 
+                                     IsChecked="{Binding b5}"/>
                                 <RadioButton Grid.Row="1" Content="Hide Locations" Margin="5"
                                      Style="{StaticResource RadioButtonStyle}"
-                                     Command="{Binding HideLocationsCommand}"/>
+                                     Command="{Binding HideLocationsCommand}"
+                                     IsChecked="{Binding b6}"/>
                             </Grid>
                         </GroupBox>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Image Grid.Column="0" Source="/Images/100.png" Stretch="Fill" Margin="5"/>
+
+                        <!--ArrowGrid Grid-->
+                        <Grid x:Name="ArrowGrid">
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ShowArrow}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                            </Grid.Style>
+                            <Path x:Name="path" HorizontalAlignment="Center" VerticalAlignment="Center"  
+                                  Data="
+                                        M0,0
+                                        L20,-20
+                                        L40,0
+                                        L25,0
+                                        L25,100
+                                        L15,100
+                                        L15,0
+                                        Z"
+                                  Fill="DarkSlateBlue" RenderTransformOrigin="1,1">
+
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Grid>
 
                         <!--ShowGridLines Grid-->
                         <Grid Grid.Column="0" Margin="5" >
@@ -508,8 +576,8 @@
                                 <RadioButton Grid.Row="0" GroupName="r" Content="Hoopoe Algorithm" IsChecked="True" Foreground="White"/>
                                 <RadioButton Grid.Row="1" GroupName="r" Content="Cuckoo Search" Foreground="White"/>
                             </Grid>
-                            <Button Grid.Row="2" Content="Start Analysis Sequence" Command="{Binding StartAnaylsissCommand}" Style="{StaticResource ButtonStyle}"/>
-                            <Button Grid.Row="3" Content="New Analysis" Command="{Binding NewAnaylsissCommand}" Style="{StaticResource ButtonStyleNew}"/>
+                            <Button Grid.Row="2" Content="Start Analysis Sequence" x:Name="Analysis" Command="{Binding StartAnaylsissCommand}" Style="{StaticResource ButtonStyle}"/>
+                            <Button Grid.Row="3" Content="New Analysis" x:Name="New" Command="{Binding NewAnaylsissCommand}" Style="{StaticResource ButtonStyleNew}"/>
                             <Border Grid.Row="4" Background="DarkBlue" Margin="10" CornerRadius="10">
                                 <Grid>
                                     <Grid.RowDefinitions>
