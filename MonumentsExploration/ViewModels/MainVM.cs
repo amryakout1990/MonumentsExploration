@@ -16,8 +16,22 @@ namespace MonumentsExploration.ViewModels
 {
     class MainVM:Utilites.ViewModelBase
     {
-        private bool _cuckooCB;
+        private bool _inVis;
 
+        public bool InVis
+        {
+            get { return _inVis; }
+            set { _inVis = value; OnPropertyChanged();}
+        }
+
+        private string _indicator;
+        public string Indicator
+        {
+            get { return _indicator; }
+            set { _indicator = value; OnPropertyChanged(); }
+        }
+
+        private bool _cuckooCB;
         public bool CuckooCB
         {
             get { return _cuckooCB; }
@@ -121,10 +135,12 @@ namespace MonumentsExploration.ViewModels
         public ICommand HideLocationsCommand { get; private set; }
         public ICommand StartAnaylsissCommand { get; private set; }
         public ICommand NewAnaylsissCommand { get; private set; }
+        public ICommand StartCommand { get; private set; }
 
         public MainVM( )
         {
             CuckooCB = false;
+            Indicator = "Ready";
             LoadIds();
             ShowGridCommand = new ActionCommand(Show);
             HideGridCommand = new ActionCommand(Hide);
@@ -134,6 +150,12 @@ namespace MonumentsExploration.ViewModels
             HideLocationsCommand = new ActionCommand(HideLocations);
             StartAnaylsissCommand = new ActionCommand(StartAnaylsiss);
             NewAnaylsissCommand = new ActionCommand(NewAnaylsiss);
+            StartCommand = new ActionCommand(Start);
+        }
+
+        private void Start()
+        {
+            InVis = true;
         }
 
         private void NewAnaylsiss()
@@ -148,7 +170,7 @@ namespace MonumentsExploration.ViewModels
             b4 = false;
             b5 = false;
             b6 = false;
-
+            Indicator = "Ready";
         }
 
         private async void StartAnaylsiss()
@@ -157,15 +179,18 @@ namespace MonumentsExploration.ViewModels
             {
                 if (ShowColorsBool != true)
                 {
+                    Indicator = "Searching...";
                     if (CuckooCB==false)
                     {
                         ShowArrow = true;
                         await Task.Run(() => { Thread.Sleep(800); ShowColorsBool = true; ShowArrow = false; });
+                        Indicator = "Succeeded";
                     }
                     else
                     {
                         ShowCuckoo = true;
                         await Task.Run(() => { Thread.Sleep(2400); ShowColorsBool = true; ShowCuckoo = false; });
+                        Indicator = "Succeeded";
                     }
                 }
             }

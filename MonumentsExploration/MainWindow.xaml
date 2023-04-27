@@ -90,7 +90,8 @@
             </Grid>
             <!--Bottom Grid-->
             <Grid x:Name="BottomGrid" Height="100" VerticalAlignment="Bottom" Margin="0 0 200 -150">
-                <Button x:Name="Start" Content="Start" Width="100" Height="50" Style="{StaticResource ButtonStyle}"/>
+                <Button x:Name="Start" Content="Start" Width="100" Height="50" Style="{StaticResource ButtonStyle}"
+                        Command="{Binding StartCommand}"/>
             </Grid>
             <!--Main Grid-->
             <Grid x:Name="MainGrid">
@@ -160,6 +161,19 @@
                     </Grid>
                     <Grid Grid.Row="1">
                         <Image Grid.Column="0" Source="/Images/100.png" Stretch="Fill" Margin="5"/>
+                        <TextBlock Text="{Binding Indicator}" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                                   Margin="10" Foreground="Red" x:Name="Ind">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding InVis}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
 
                         <!--Cuckoo Search Grid-->
                         <Grid x:Name="CuckooGrid">
