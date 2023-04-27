@@ -16,6 +16,21 @@ namespace MonumentsExploration.ViewModels
 {
     class MainVM:Utilites.ViewModelBase
     {
+        private bool _cuckooCB;
+
+        public bool CuckooCB
+        {
+            get { return _cuckooCB; }
+            set { _cuckooCB = value; OnPropertyChanged();}
+        }
+
+        private bool _showCuckoo;
+        public bool ShowCuckoo
+        {
+            get { return _showCuckoo; }
+            set { _showCuckoo = value; OnPropertyChanged(); }
+        }
+
         private bool _showArrow;
         public bool ShowArrow
         {
@@ -109,6 +124,7 @@ namespace MonumentsExploration.ViewModels
 
         public MainVM( )
         {
+            CuckooCB = false;
             LoadIds();
             ShowGridCommand = new ActionCommand(Show);
             HideGridCommand = new ActionCommand(Hide);
@@ -139,8 +155,19 @@ namespace MonumentsExploration.ViewModels
         {
             if (ShowLocationsBool==true)
             {
-                ShowArrow = true;
-                await Task.Run(()=> { Thread.Sleep(800); ShowColorsBool = true; ShowArrow = false;});
+                if (ShowColorsBool != true)
+                {
+                    if (CuckooCB==false)
+                    {
+                        ShowArrow = true;
+                        await Task.Run(() => { Thread.Sleep(800); ShowColorsBool = true; ShowArrow = false; });
+                    }
+                    else
+                    {
+                        ShowCuckoo = true;
+                        await Task.Run(() => { Thread.Sleep(2400); ShowColorsBool = true; ShowCuckoo = false; });
+                    }
+                }
             }
             else
             {

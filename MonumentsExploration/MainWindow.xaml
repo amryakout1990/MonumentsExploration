@@ -45,6 +45,23 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="CuckooStoryboard" Storyboard.TargetName="CuckooBorder" Storyboard.TargetProperty="Border.Center">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="CuckooBorder">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="10"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-100"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="-300"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-400"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="-500"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="-560"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="-500"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.6" Value="-400"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.8" Value="-300"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="-200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="-100"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.4" Value="10"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="Start">
@@ -52,6 +69,9 @@
         </EventTrigger>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="Analysis">
             <BeginStoryboard Storyboard="{StaticResource ArrowStoryboard}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="Analysis">
+            <BeginStoryboard Storyboard="{StaticResource CuckooStoryboard}"/>
         </EventTrigger>
     </Window.Triggers>
     <Border CornerRadius="10" Background="#2fda2b" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
@@ -141,7 +161,31 @@
                     <Grid Grid.Row="1">
                         <Image Grid.Column="0" Source="/Images/100.png" Stretch="Fill" Margin="5"/>
 
-                        <!--ArrowGrid Grid-->
+                        <!--Cuckoo Search Grid-->
+                        <Grid x:Name="CuckooGrid">
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ShowCuckoo}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Border x:Name="CuckooBorder" Width="10" Height="250" HorizontalAlignment="Right" Background="DarkSlateBlue" RenderTransformOrigin="0.5,0.5">
+                                <Border.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Border.RenderTransform>
+                            </Border>
+                        </Grid>
+
+                        <!--Hoopoe Algorithm ArrowGrid Grid-->
                         <Grid x:Name="ArrowGrid">
                             <Grid.Style>
                                 <Style TargetType="Grid">
@@ -574,7 +618,7 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <RadioButton Grid.Row="0" GroupName="r" Content="Hoopoe Algorithm" IsChecked="True" Foreground="White"/>
-                                <RadioButton Grid.Row="1" GroupName="r" Content="Cuckoo Search" Foreground="White"/>
+                                <RadioButton Grid.Row="1" GroupName="r" Content="Cuckoo Search" IsChecked="{Binding CuckooCB}" Foreground="White"/>
                             </Grid>
                             <Button Grid.Row="2" Content="Start Analysis Sequence" x:Name="Analysis" Command="{Binding StartAnaylsissCommand}" Style="{StaticResource ButtonStyle}"/>
                             <Button Grid.Row="3" Content="New Analysis" x:Name="New" Command="{Binding NewAnaylsissCommand}" Style="{StaticResource ButtonStyleNew}"/>
