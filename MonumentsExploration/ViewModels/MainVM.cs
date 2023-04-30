@@ -11,13 +11,36 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace MonumentsExploration.ViewModels
 {
     class MainVM:Utilites.ViewModelBase
     {
-        private bool _inVis;
+        DispatcherTimer timer1 = new DispatcherTimer();
+        DispatcherTimer timer2 = new DispatcherTimer();
 
+        private string _time;
+        public string Time
+        {
+            get { return _time; }
+            set { _time = value; OnPropertyChanged(); }
+        }
+        private string _timeM;
+        public string TimeM
+        {
+            get { return _timeM; }
+            set { _timeM = value; OnPropertyChanged(); }
+        }
+
+        private int _counter;
+        public int Counter
+        {
+            get { return _counter; }
+            set { _counter = value; OnPropertyChanged(); }
+        }
+
+        private bool _inVis;
         public bool InVis
         {
             get { return _inVis; }
@@ -141,6 +164,9 @@ namespace MonumentsExploration.ViewModels
         {
             CuckooCB = false;
             Indicator = "Ready";
+            Time = "0";
+            TimeM = "0";
+            Counter = 0;
             LoadIds();
             ShowGridCommand = new ActionCommand(Show);
             HideGridCommand = new ActionCommand(Hide);
@@ -152,6 +178,84 @@ namespace MonumentsExploration.ViewModels
             NewAnaylsissCommand = new ActionCommand(NewAnaylsiss);
             StartCommand = new ActionCommand(Start);
         }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            Counter++;
+            Time = Counter.ToString();
+            //if (Counter>7)
+            //{
+            //    timer1.Stop();
+            //}
+
+        }
+        private void Timer2_Tick(object sender, EventArgs e)
+        {
+            Counter++;
+            Time = Counter.ToString();
+            if (Convert.ToInt32(Time) >= 9 && TimeM == "0")
+            {
+                Counter = 0;
+                TimeM = "1";
+            }
+            else if (Convert.ToInt32(Time) >= 9 && TimeM == "1")
+            {
+                Counter = 0;
+                TimeM = "2";
+            }
+
+        }
+
+        private void StartTimer1()
+        {
+            if (Counter > 0)
+            {
+                timer1.Tick -= Timer1_Tick;
+                Counter = 0;
+            }
+
+            timer1.Interval = TimeSpan.FromMilliseconds(100);
+            timer1.Tick += Timer1_Tick;
+            timer1.Start();
+
+        }
+        private void StopTimer1()
+        {
+            if (Counter > 0)
+            {
+                timer1.Tick -= Timer1_Tick;
+                Counter = 0;
+            }
+
+            timer1.Stop();
+
+        }
+
+        private void StartTimer2()
+        {
+            if (Counter > 0)
+            {
+                timer2.Tick -= Timer2_Tick;
+                Counter = 0;
+            }
+
+            timer2.Interval = TimeSpan.FromMilliseconds(100);
+            timer2.Tick += Timer2_Tick;
+            timer2.Start();
+
+        }
+        private void StopTimer2()
+        {
+            if (Counter > 0)
+            {
+                timer2.Tick -= Timer2_Tick;
+                Counter = 0;
+            }
+
+            timer2.Stop();
+
+        }
+
 
         private void Start()
         {
@@ -171,6 +275,9 @@ namespace MonumentsExploration.ViewModels
             b5 = false;
             b6 = false;
             Indicator = "Ready";
+            Time = "0";
+            TimeM = "0";
+            Counter = 0;
         }
 
         private async void StartAnaylsiss()
@@ -183,13 +290,15 @@ namespace MonumentsExploration.ViewModels
                     if (CuckooCB==false)
                     {
                         ShowArrow = true;
-                        await Task.Run(() => { Thread.Sleep(800); ShowColorsBool = true; ShowArrow = false; });
+                        StartTimer1();
+                        await Task.Run(() => { Thread.Sleep(800); ShowColorsBool = true; ShowArrow = false; StopTimer1(); });
                         Indicator = "Succeeded";
                     }
                     else
                     {
                         ShowCuckoo = true;
-                        await Task.Run(() => { Thread.Sleep(2400); ShowColorsBool = true; ShowCuckoo = false; });
+                        StartTimer2();
+                        await Task.Run(() => { Thread.Sleep(2400); ShowColorsBool = true; ShowCuckoo = false; StopTimer2(); });
                         Indicator = "Succeeded";
                     }
                 }

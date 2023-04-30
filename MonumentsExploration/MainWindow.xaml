@@ -102,7 +102,8 @@
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="150"/>
-                        <RowDefinition Height="350*"/>
+                        <RowDefinition Height="320*"/>
+                        <RowDefinition Height="30*"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
@@ -161,19 +162,6 @@
                     </Grid>
                     <Grid Grid.Row="1">
                         <Image Grid.Column="0" Source="/Images/100.png" Stretch="Fill" Margin="5"/>
-                        <TextBlock Text="{Binding Indicator}" VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                                   Margin="10" Foreground="Red" x:Name="Ind">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding InVis}" Value="True">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
 
                         <!--Cuckoo Search Grid-->
                         <Grid x:Name="CuckooGrid">
@@ -610,7 +598,36 @@
 
                         </Grid>
                     </Grid>
-
+                    <Border Grid.Row="2" Margin="5 0 5 5" Background="DarkBlue" CornerRadius="0 0 0 10">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding Indicator}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                    Foreground="White" x:Name="Ind" Margin="10 0 0 0">
+                                <!--<TextBlock.Style>
+                                    --><!--<Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding InVis}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>--><!--
+                                </TextBlock.Style>-->
+                            </TextBlock>
+                            <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                                <Run Text="Search Time" />
+                                <Run Text="0 : 0 :"/>
+                                <Run Text="{Binding TimeM}"/>
+                                <Run Text=":"/>
+                                <Run Text="{Binding Time}"/>
+                            </TextBlock>
+                            <!--<Label Grid.Column="2" Content="{Binding Time}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Foreground="White"/>-->
+                        </Grid>
+                    </Border>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Border Background="DarkSlateBlue" CornerRadius="0 10 10 0">
